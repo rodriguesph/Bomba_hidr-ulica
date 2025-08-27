@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBOOK: Dimensionamento de Bombas Hidráulicas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="70" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-container {
+            background: #34495e;
+            padding: 20px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .nav-toggle {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .index {
+            display: none;
+            background: #ecf0f1;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .index.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .index h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .index-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .index-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .index-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .index-item a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            display: block;
+        }
+
+        .content {
+            padding: 40px;
+            max-width: none;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #1e3c72;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section h3 {
+            color: #2980b9;
+            font-size: 1.6rem;
+            margin: 25px 0 15px 0;
+            padding-left: 20px;
+            border-left: 3px solid #3498db;
+        }
+
+        .section h4 {
+            color: #34495e;
+            font-size: 1.3rem;
+            margin: 20px 0 10px 0;
+        }
+
+        .section h5 {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin: 15px 0 8px 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .data-table th {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .data-table tr:hover {
+            background: #e3f2fd;
+        }
+
+        .back-to-index {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .back-to-index:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .exercise-container {
+            background: #fff;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .exercise-header {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .exercise-content {
+            padding: 20px;
+        }
+
+        .solution-toggle {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .solution-toggle:hover {
+            background: #229954;
+            transform: translateY(-1px);
+        }
+
+        .solution {
+            display: none;
+            background: #f1f8e9;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #27ae60;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .solution.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid #3498db;
+        }
+
+        code {
+            background: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        blockquote {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-style: italic;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin: 0 5px;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .index-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .water-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .water-drop {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #3498db;
+            border-radius: 50%;
+            animation: fall 3s infinite linear;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="water-animation" id="waterAnimation"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1>📚 EBOOK: DIMENSIONAMENTO DE BOMBAS HIDRÁULICAS</h1>
+            <p class="subtitle">Guia Completo para Estudantes de Engenharia</p>
+        </header>
+
+        <nav class="nav-container">
+            <button class="nav-toggle" onclick="toggleIndex()">📋 Mostrar/Ocultar Índice</button>
+            <div class="index" id="index">
+                <h2>📑 Índice Interativo</h2>
+                <div class="index-list">
+                    <div class="index-item"><a href="#introducao">🚰 Introdução</a></div>
+                    <div class="index-item"><a href="#fundamentos">⚙️ Fundamentos Básicos</a></div>
+                    <div class="index-item"><a href="#tipos">🔧 Tipos de Bombas</a></div>
+                    <div class="index-item"><a href="#parametros">📊 Parâmetros de Dimensionamento</a></div>
+                    <div class="index-item"><a href="#eficiencia">⚡ Eficiência de Bombas</a></div>
+                    <div class="index-item"><a href="#calculos">🧮 Cálculos Práticos</a></div>
+                    <div class="index-item"><a href="#selecao">✅ Seleção de Bombas</a></div>
+                    <div class="index-item"><a href="#exercicios">📝 Exercícios Resolvidos</a></div>
+                    <div class="index-item"><a href="#questoes-enade">🎓 Questões ENADE</a></div>
+                    <div class="index-item"><a href="#conclusao">🎯 Conclusão</a></div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="content">
+            <section class="section" id="introducao">
+                <h2>🚰 INTRODUÇÃO</h2>
+                
+                <p>Bem-vindo ao mundo fascinante das <strong class="highlight">bombas hidráulicas</strong>! <span class="emoji">🚰</span></p>
+
+                <p>Como futuro engenheiro, você trabalhará com sistemas que movimentam fluidos em praticamente todas as áreas: desde o abastecimento de água em cidades até sistemas de refrigeração industrial, irrigação agrícola e processos petroquímicos.</p>
+
+                <h3>Por que estudar bombas?</h3>
+                <ul>
+                    <li><strong>Ubiquidade</strong>: Estão presentes em 90% dos processos industriais</li>
+                    <li><strong>Impacto energético</strong>: Consomem cerca de 20% da energia elétrica mundial</li>
+                    <li><strong>Importância econômica</strong>: Seleção incorreta pode custar milhares de reais/ano</li>
+                    <li><strong>Segurança</strong>: Falhas podem causar acidentes graves</li>
+                </ul>
+
+                <h3>O que você aprenderá:</h3>
+                <ul>
+                    <li>✅ Conceitos fundamentais de hidráulica aplicada</li>
+                    <li>✅ Como calcular e dimensionar bombas</li>
+                    <li>✅ Critérios de seleção técnica e econômica</li>
+                    <li>✅ Resolução de problemas práticos</li>
+                    <li>✅ Interpretação de catálogos técnicos</li>
+                </ul>
+
+                <button class="back-to-index" onclick="scrollToIndex()">🔝 Voltar ao Índice</button>
+            </section>
+
+            <section class="section" id="fundamentos">
+                <h2>⚙️ FUNDAMENTOS BÁSICOS</h2>
+
+                <h3>O que é uma Bomba Hidráulica?</h3>
+                <p>Uma bomba é uma <strong class="highlight">máquina que converte energia mecânica em energia hidráulica</strong>, aumentando a pressão e/ou velocidade de um fluido para transportá-lo de um ponto a outro.</p>
+
+                <h3>Princípio de Funcionamento</h3>
+                <p><strong>Equação de Bernoulli Aplicada:</strong></p>
+                <pre>P₁/γ + v₁²/2g + z₁ + H = P₂/γ + v₂²/2g + z₂ + hf</pre>
+                <p>Onde <strong>H</strong> é a energia fornecida pela bomba!</p>
+
+                <h3>Analogia Simples <span class="emoji">🎯</span></h3>
+                <p>Imagine uma bomba como o <strong>coração do sistema hidráulico</strong>:</p>
+                <ul>
+                    <li><strong>Coração</strong>: Bombeia sangue vencendo a resistência dos vasos</li>
+                    <li><strong>Bomba</strong>: Move fluido vencendo a resistência das tubulações</li>
+                </ul>
+
+                <h3>Componentes Básicos</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Componente</th>
+                            <th>Função</th>
+                            <th>Importância</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rotor (Impelidor)</td>
+                            <td>Transfere energia ao fluido</td>
+                            <td>Coração da bomba</td>
+                        </tr>
+                        <tr>
+                            <td>Voluta/Difusor</td>
+                            <td>Converte velocidade em pressão</td>
+                            <td>Eficiência hidráulica</td>
+                        </tr>
+                        <tr>
+                            <td>Eixo</td>
+                            <td>Transmite movimento do motor</td>
+                            <td>Resistência mecânica</td>
+                        </tr>
+                        <tr>
+                            <td>Mancais</td>
+                            <td>Suportam o eixo</td>
+                            <td>Vida útil</td>
+                        </tr>
+                        <tr>
+                            <td>Selo mecânico</td>
+                            <td>Evita vazamentos</td>
+                            <td>Confiabilidade</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="back-to-index" onclick="scrollToIndex()">🔝 Voltar ao Índice</button>
+            </section>
+
+            <section class="section" id="tipos">
+                <h2>🔧 TIPOS DE BOMBAS</h2>
+
+                <h3>Classificação Principal</h3>
+
+                <h4>1. Bombas Dinâmicas (Turbo-bombas)</h4>
+                <p><strong>Princípio</strong>: Transferem energia através de <strong>forças dinâmicas</strong> (centrífuga, axial)</p>
+
+                <h5>Bombas Centrífugas <span class="emoji">🌀</span></h5>
+                <ul>
+                    <li><strong>Como funcionam</strong>: Rotor gira → força centrífuga → fluido é "atirado" para fora</li>
+                    <li><strong>Aplicações</strong>: Abastecimento de água, irrigação, indústria</li>
+                    <li><strong>Vantagens</strong>: Simples, baixo custo, alta vazão</li>
+                    <li><strong>Desvantagens</strong>: Eficiência varia com a vazão</li>
+                </ul>
+                <p><strong>Exemplo prático</strong>: Bomba de piscina doméstica</p>
+
+                <h5>Bombas Axiais <span class="emoji">⬆️</span></h5>
+                <ul>
+                    <li><strong>Como funcionam</strong>: Rotor "empurra" o fluido axialmente (como hélice de avião)</li>
+                    <li><strong>Aplicações</strong>: Drenagem, sistemas de grande vazão</li>
+                    <li><strong>Vantagens</strong>: Vazões muito altas</li>
+                    <li><strong>Desvantagens</strong>: Baixas alturas manométricas</li>
+                </ul>
+                <p><strong>Exemplo prático</strong>: Bombas de drenagem urbana</p>
+
+                <h5>Bombas Mistas <span class="emoji">🔄</span></h5>
+                <ul>
+                    <li><strong>Como funcionam</strong>: Combinam ação centrífuga e axial</li>
+                    <li><strong>Aplicações</strong>: Estações de tratamento, irrigação</li>
+                    <li><strong>Características</strong>: Intermediárias entre centrífugas e axiais</li>
+                </ul>
+
+                <h4>2. Bombas Volumétricas (Deslocamento Positivo)</h4>
+                <p><strong>Princípio</strong>: Movimentam volumes <strong>fixos</strong> de fluido por ciclo</p>
+
+                <h5>Alternativas <span class="emoji">↕️</span></h5>
+                <ul>
+                    <li><strong>Pistão</strong>: Movimento alternado</li>
+                    <li><strong>Diafragma</strong>: Membrana flexível</li>
+                    <li><strong>Aplicações</strong>: Dosagem química, alta pressão</li>
+                </ul>
+
+                <h5>Rotativas <span class="emoji">🔄</span></h5>
+                <ul>
+                    <li><strong>Engrenagens</strong>: Dentes que se engrenam</li>
+                    <li><strong>Parafusos</strong>: Helicoidais</li>
+                    <li><strong>Palhetas</strong>: Lâminas deslizantes</li>
+                    <li><strong>Aplicações</strong>: Óleos viscosos, combustíveis</li>
+                </ul>
+
+                <h3>Quando Usar Cada Tipo?</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Aplicação</th>
+                            <th>Tipo Recomendado</th>
+                            <th>Justificativa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Grande vazão, baixa pressão</td>
+                            <td>Centrífuga/Axial</td>
+                            <td>Eficiência e custo</td>
+                        </tr>
+                        <tr>
+                            <td>Alta pressão, baixa vazão</td>
+                            <td>Volumétrica</td>
+                            <td>Pressão constante</td>
+                        </tr>
+                        <tr>
+                            <td>Fluidos viscosos</td>
+                            <td>Volumétrica rotativa</td>
+                            <td>Não afeta eficiência</td>
+                        </tr>
+                        <tr>
+                            <td>Dosagem precisa</td>
+                            <td>Volumétrica alternativa</td>
+                            <td>Volume constante</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="back-to-index" onclick="scrollToIndex()">🔝 Voltar ao Índice</button>
+            </section>
+
+            <section class="section" id="parametros">
+                <h2>📊 PARÂMETROS DE DIMENSIONAMENTO</h2>
+
+                <h3>1. Vazão (Q)</h3>
+                <p><strong>Definição</strong>: Volume de fluido que passa por uma seção em determinado tempo</p>
+
+                <p><strong>Unidades comuns:</strong></p>
+                <ul>
+                    <li>m³/h (metros cúbicos por hora)</li>
+                    <li>L/s (litros por segundo)</li>
+                    <li>GPM (galões por minuto - EUA)</li>
+                </ul>
+
+                <p><strong>Cálculo básico:</strong></p>
+                <pre>Q = A × v</pre>
+                <p>Onde:</p>
+                <ul>
+                    <li><strong>A</strong>: Área da seção transversal (m²)</li>
+                    <li><strong>v</strong>: Velocidade média (m/s)</li>
+                </ul>
+
+                <p><strong>Exemplo prático</strong> <span class="emoji">📝</span>:</p>
+                <p>Uma tubulação de 100mm de diâmetro com velocidade de 2 m/s:</p>
+                <pre>A = π × (0,1)²/4 = 0,00785 m²
+Q = 0,00785 × 2 = 0,0157 m³/s = 56,5 m³/h</pre>
+
+                <h3>2. Altura Manométrica Total (AMT)</h3>
+                <p><strong>Definição</strong>: Energia total que a bomba deve fornecer ao fluido</p>
+
+                <p><strong>Componentes da AMT:</strong></p>
+                <pre>AMT = Hg + hf + ΔP/γ</pre>
+
+                <h4>Altura Geométrica (Hg)</h4>
+                <pre>Hg = Hrecalque + Hsucção</pre>
+                <ul>
+                    <li><strong>Hrecalque</strong>: Diferença de nível entre bomba e ponto final</li>
+                    <li><strong>Hsucção</strong>:
+                        <ul>
+                            <li><strong>Positiva</strong>: Nível acima da bomba</li>
+                            <li><strong>Negativa</strong>: Nível abaixo da bomba (mais comum)</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>Perdas de Carga (hf)</h4>
+
+                <h5>Perdas Distribuídas (Atrito)</h5>
+                <p><strong>Fórmula de Darcy-Weisbach:</strong></p>
+                <pre>hf = f × (L/D) × (v²/2g)</pre>
+
+                <p><strong>Fórmula de Hazen-Williams:</strong></p>
+                <pre>hf = (10,674 × Q^1,852 × L) / (C^1,852 × D^4,871)</pre>
+
+                <p>Onde:</p>
+                <ul>
+                    <li><strong>Q</strong>: Vazão em m³/s</li>
+                    <li><strong>L</strong>: Comprimento da tubulação (m)</li>
+                    <li><strong>C</strong>: Coeficiente de rugosidade (PVC=150, Ferro=100, Aço=120)</li>
+                    <li><strong>D</strong>: Diâmetro interno (m)</li>
+                    <li><strong>hf</strong>: Perda de carga (m)</li>
+                </ul>
+
+                <h5>Perdas Localizadas (Método dos Comprimentos Equivalentes)</h5>
+                <p>O <strong>método dos comprimentos equivalentes</strong> converte cada singularidade em um comprimento equivalente de tubulação reta que causaria a mesma perda de carga.</p>
+
+                <p><strong>Fórmula:</strong></p>
+                <pre>hf_local = (10,674 × Q^1,852 × Leq) / (C^1,852 × D^4,871)</pre>
+
+                <p>Onde <strong>Leq</strong> é o comprimento equivalente total das singularidades.</p>
+
+                <p><strong>Comprimentos Equivalentes Típicos:</strong></p>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Singularidade</th>
+                            <th>Leq/D</th>
+                            <th>Exemplo D=100mm</th>
+                            <th>Observações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Entrada normal</td>
+                            <td>30</td>
+                            <td>3,0 m</td>
+                            <td>Borda viva</td>
+                        </tr>
+                        <tr>
+                            <td>Saída</td>
+                            <td>60</td>
+                            <td>6,0 m</td>
+                            <td>Para reservatório</td>
+                        </tr>
+                        <tr>
+                            <td>Curva 90° raio longo</td>
+                            <td>20</td>
+                            <td>2,0 m</td>
+                            <td>R/D ≥ 1,5</td>
+                        </tr>
+                        <tr>
+                            <td>Curva 90° raio curto</td>
+                            <td>50</td>
+                            <td>5,0 m</td>
+                            <td>R/D < 1,5</td>
+                        </tr>
+                        <tr>
+                            <td>Curva 45°</td>
+                            <td>15</td>
+                            <td>1,5 m</td>
+                            <td>Raio longo</td>
+                        </tr>
+                        <tr>
+                            <td>Válvula gaveta aberta</td>
+                            <td>8</td>
+                            <td>0,8 m</td>
+                            <td>Totalmente aberta</td>
+                        </tr>
+                        <tr>
+                            <td>Válvula globo aberta</td>
+                            <td>300</td>
+                            <td>30,0 m</td>
+                            <td>Totalmente aberta</td>
+                        </tr>
+                        <tr>
+                            <td>Válvula de retenção</td>
+                            <td>100</td>
+                            <td>10,0 m</td>
+                            <td>Tipo portinhola</td>
+                        </tr>
+                        <tr>
+                            <td>Tê passagem direta</td>
+                            <td>20</td>
+                            <td>2,0 m</td>
+                            <td>Fluxo direto</td>
+                        </tr>
+                        <tr>
+                            <td>Tê saída lateral</td>
+                            <td>60</td>
+                            <td>6,0 m</td>
+                            <td>Mudança 90°</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Procedimento de cálculo:</strong></p>
+                <ol>
+                    <li>Identificar todas as singularidades</li>
+                    <li>Calcular Leq para cada uma: Leq = (Leq/D) × D</li>
+                    <li>Somar todos os comprimentos equivalentes</li>
+                    <li>Aplicar a fórmula de Hazen-Williams com Ltotal = L + ΣLeq</li>
+                </ol>
+
+                <p><strong>Exemplo prático</strong> <span class="emoji">📝</span>:</p>
+                <p>Sistema com tubulação D=150mm:</p>
+                <ul>
+                    <li>4 curvas 90° raio longo: 4 × 20 × 0,15 = 12,0 m</li>
+                    <li>2 válvulas gaveta: 2 × 8 × 0,15 = 2,4 m</li>
+                    <li>1 entrada + 1 saída: (30 + 60) × 0,15 = 13,5 m</li>
+                    <li><strong>Total Leq</strong>: 27,9 m</li>
+                </ul>
+
+                <h3>3. Velocidades Recomendadas</h3>
+                <p><strong>Para evitar problemas:</strong></p>
+                <ul>
+                    <li><strong>Muito baixa</strong>: Sedimentação, corrosão</li>
+                    <li><strong>Muito alta</strong>: Erosão, ruído, perdas excessivas</li>
+                </ul>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo de Linha</th>
+                            <th>Velocidade (m/s)</th>
+                            <th>Justificativa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sucção</td>
+                            <td>0,5 - 1,5</td>
+                            <td>Evitar cavitação</td>
+                        </tr>
+                        <tr>
+                            <td>Recalque</td>
+                            <td>1,5 - 3,0</td>
+                            <td>Economia energia/material</td>
+                        </tr>
+                        <tr>
+                            <td>Retorno</td>
+                            <td>1,0 - 2,0</td>
+                            <td>Menor pressão</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="back-to-index" onclick="scrollToIndex()">🔝 Voltar ao Índice</button>
+            </section>
+
+            <section class="section" id="eficiencia">
+                <h2>⚡ EFICIÊNCIA DE BOMBAS</h2>
+
+                <h3>Por que a Eficiência é Importante?</h3>
+                <p><strong>Impacto econômico real</strong> <span class="emoji">💰</span>:</p>
+                <p>Uma bomba de 10 CV operando 8000h/ano:</p>
+                <ul>
+                    <li><strong>Eficiência 60%</strong>: Custo anual ≈ R$ 8.000</li>
+                    <li><strong>Eficiência 80%</strong>: Custo anual ≈ R$ 6.000</li>
+                    <li><strong>Economia</strong>: R$ 2.000/ano!</li>
+                </ul>
+
+                <h3>Tipos de Perdas</h3>
+
+                <h4>1. Perdas Hidráulicas</h4>
+                <p><strong>Causas:</strong></p>
+                <ul>
+                    <li>Atrito do fluido com as paredes</li>
+                    <li>Turbulência na entrada do rotor</li>
+                    <li>Separação do fluxo nas pás</li>
+                    <li>Recirculação interna</li>
+                </ul>
+
+                <p><strong>Como reduzir:</strong></p>
+                <ul>
+                    <li>Acabamento superficial liso</li>
+                    <li>Projeto otimizado das pás</li>
+                    <li>Operação próxima ao ponto ótimo</li>
+                </ul>
+
+                <h4>2. Perdas Volumétricas</h4>
+                <p><strong>Causas:</strong></p>
+                <ul>
+                    <li>Vazamentos internos (folgas)</li>
+                    <li>Refluxo pelas folgas do rotor</li>
+                    <li>Vazamentos por selos</li>
+                </ul>
+
+                <p><strong>Fórmula:</strong></p>
+                <pre>ηv = Q_útil / Q_total</pre>
+
+                <p><strong>Como reduzir:</strong></p>
+                <ul>
+                    <li>Folgas adequadas (não muito grandes)</li>
+                    <li>Selos em bom estado</li>
+                    <li>Manutenção preventiva</li>
+                </ul>
+
+                <h4>3. Perdas Mecânicas</h4>
+                <p><strong>Causas:</strong></p>
+                <ul>
+                    <li>Atrito nos mancais</li>
+                    <li>Atrito nos selos mecânicos</li>
+                    <li>Perdas no acoplamento</li>
+                    <li>Ventilação do rotor</li>
+                </ul>
+
+                <p><strong>Como reduzir:</strong></p>
+                <ul>
+                    <li>Lubrificação adequada</li>
+                    <li>Alinhamento correto</li>
+                    <li>Mancais de qualidade</li>
+                </ul>
+
+                <h3>Eficiência Global</h3>
+                <pre>η_global = η_hidráulica × η_volumétrica × η_mecânica</pre>
+
+                <p><strong>Valores típicos:</strong></p>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Potência da Bomba</th>
+                            <th>Eficiência Típica</th>
+                            <th>Faixa de Operação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>< 1 CV</td>
+                            <td>30-50%</td>
+                            <td>Bombas pequenas</td>
+                        </tr>
+                        <tr>
+                            <td>1-10 CV</td>
+                            <td>50-75%</td>
+                            <td>Aplicações residenciais</td>
+                        </tr>
+                        <tr>
+                            <td>10-100 CV</td>
+                            <td>70-85%</td>
+                            <td>Aplicações industriais</td>
+                        </tr>
+                        <tr>
+                            <td>> 100 CV</td>
+                            <td>80-92%</td>
+                            <td>Grandes instalações</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Curva de Eficiência</h3>
+                <p>A eficiência varia com a <strong>vazão</strong>:</p>
+                <ul>
+                    <li><strong>Baixas vazões</strong>: Recirculação interna</li>
+                    <li><strong>Vazão ótima (BEP)</strong>: Máxima eficiência</li>
+                    <li><strong>Altas vazões</strong>: Perdas por atrito aumentam</li>
+                </ul>
+
+                <p><strong>BEP (Best Efficiency Point)</strong>: Ponto de máxima eficiência, geralmente entre 70-90% da vazão nominal.</p>
+
+                <h3>Fatores que Afetam a Eficiência</h3>
+
+                <h4>Projeto da Bomba</h4>
+                <ul>
+                    <li><strong>Número de pás</strong>: Mais pás = melhor guiamento, mas mais atrito</li>
+                    <li><strong>Ângulo das pás</strong>: Otimizado para uma vazão específica</li>
+                    <li><strong>Folgas</strong>: Compromisso entre eficiência e desgaste</li>
+                </ul>
+
+                <h4>Condições de Operação</h4>
+                <ul>
+                    <li><strong>Viscosidade</strong>: Fluidos viscosos reduzem eficiência</li>
+                    <li><strong>Densidade</strong>: Afeta as perdas hidráulicas</li>
+                    <li><strong>Temperatura</strong>: Altera viscosidade e folgas</li>
+                </ul>
+
+                <h4>Estado da Bomba</h4>
+                <ul>
+                    <li><strong>Desgaste</strong>: Aumenta folgas internas</li>
+                    <li><strong>Corrosão</strong>: Aumenta rugosidade</li>
+                    <li><strong>Desalinhamento</strong>: Perdas mecânicas extras</li>
+                </ul>
+
+                <h3>Como Manter Alta Eficiência <span class="emoji">🔧</span></h3>
+                <ol>
+                    <li><strong>Seleção correta</strong>: Operar próximo ao BEP</li>
+                    <li><strong>Manutenção preventiva</strong>: Lubrificação, alinhamento</li>
+                    <li><strong>Monitoramento</strong>: Acompanhar consumo energético</li>
+                    <li><strong>Substituição planejada</strong>: Quando eficiência cair muito</li>
+                </ol>
+
+                <button class="back-to-index" onclick="scrollToIndex()">🔝 Voltar ao Índice</button>
+            </section>
+
+            <section class="section" id="calculos">
+                <h2>🧮 CÁLCULOS PRÁTICOS</h2>
+
+                <h3>Roteiro de Dimensionamento</h3>
+
+                <h4>Passo 1: Definir a Vazão</h4>
+                <pre>Q = Consumo + Perdas + Margem de Segurança</pre>
+
+                <p><strong>Exemplo</strong>: Sistema de irrigação</p>
+                <ul>
+                    <li>Consumo: 50 m³/h</li>
+                    <li>Perdas: 5% = 2,5 m³/h</li>
+                    <li>Margem: 10% = 5,25 m³/h</li>
+                    <li><strong>Total</strong>: Q = 57,75 m³/h ≈ <strong>60 m³/h</strong></li>
+                </ul>
+
+                <h4>Passo 2: Calcular AMT</h4>
+
+                <p><strong>2.1 - Altura Geométrica</strong></p>
+                <pre>Hg = H_recalque + H_sucção</pre>
+
+                <p><strong>2.2 - Perdas Distribuídas</strong></p>
+                <pre>hf = (10,674 × Q^1,852 × L) / (C^1,852 × D^4,871)</pre>
+
+                <p><strong>2.3 - Perdas Localizadas (Comprimentos Equivalentes)</strong></p>
+                <pre>Leq_total = Σ(Leq/D × D)
+hf_local = (10,674 × Q^1,852 × Leq_total) / (C^1,852 × D^4,871)</pre>
+
+                <p><strong>2.4 - AMT Total</strong></p>
+                <pre>AMT = Hg + hf_distribuídas + hf_localizadas</pre>
+
+                <h4>Passo 3: Calcular Potência</h4>
+                <pre>P = (γ × Q × AMT) / (75 × η)  [CV]
+P = (γ × Q × AMT) / (1000 × η)  [kW]</pre>
+
+                <h3>Exemplo Completo <span class="emoji">📋</span></h3>
+
+                <p><strong>Sistema de abastecimento de água:</strong></p>
+
+                <p><strong>Dados:</strong></p>
+                <ul>
+                    <li>Vazão necessária: 80 m³/h = 0,0222 m³/s</li>
+                    <li>Reservatório inferior: 5m abaixo da bomba</li>
+                    <li>Reservatório superior: 25m acima da bomba</li>
+                    <li>Tubulação: PVC, D=150mm = 0,15m, L=200m</li>
+                    <li>4 curvas 90° raio longo, 2 válvulas gaveta, entrada e saída</li>
+                    <li>Temperatura: 20°C</li>
+                    <li>Altitude: nível do mar</li>
+                </ul>
+
+                <p><strong>Solução:</strong></p>
+
+                <p><strong>1. Vazão de projeto:</strong></p>
+                <pre>Q = 80 m³/h = 0,0222 m³/s</pre>
+
+                <p><strong>2. Velocidade na tubulação:</strong></p>
+                <pre>A = π × (0,15)²/4 = 0,0177 m²
+v = Q/A = 0,0222/0,0177 = 1,25 m/s ✓ (adequada)</pre>
+
+                <p><strong>3. Altura geométrica:</strong></p>
+                <pre>Hg = 25 + 5 = 30 m</pre>
+
+                <p><strong>4. Perdas distribuídas (Hazen-Williams):</strong></p>
+                <pre>hf = (10,674 × (0,0222)^1,852 × 200) / (150^1,852 × (0,15)^4,871)
+hf = (10,674 × 0,000187 × 200) / (4.158 × 0,0000563)
+hf = 0,399 / 0,234 = 1,70 m</pre>
+
+                <p><strong>5. Perdas localizadas (Comprimentos Equivalentes):</strong></p>
+                <pre>4 curvas 90°: 4 × 20 × 0,15 = 12,0 m
+2 válvulas gaveta: 2 × 8 × 0,15 = 2,4 m
+Entrada + saída: (30 + 60) × 0,15 = 13,5 m
+Leq_total = 12,0 + 2,4 + 13,5 = 27,9 m
+
+hf_local = (10,674 × (0,0222)^1,852 × 27,9) / (150^1,852 × (0,15)^4,871)
+hf_local = (10,674 × 0,000187 × 27,9) / (4.158 × 0,0000563)
+hf_local = 0,0557 / 0,234 = 0,24 m</pre>
+
+                <p><strong>6. AMT total:</strong></p>
+                <pre>AMT = 30 + 1,70 + 0,24 = 31,94 m ≈ 32,0 m</pre>
+
+                <p><strong>7. Potência necessária:</strong></p>
+                <pre>P = (1000 × 0,0222 × 32,0) / (1000 × 0,75) = 0,95 kW</pre>
+                <p>(Assumindo eficiência = 75%)</p>
+
+                <p><strong>Resultado</strong>: Bomba de <strong>1,5 kW</strong> (margem de segurança)</p>
+
+                <button class="back-to-index" onclick="scrollToIndex()">🔝 Voltar ao Índice</button>
+            </section>
+
+            <section class="section" id="selecao">
+                <h2>✅ SELEÇÃO DE BOMBAS</h2>
+
+                <h3>Critérios de Seleção</h3>
+
+                <h4>1. Critérios Técnicos</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Parâmetro</th>
+                            <th>Consideração</th>
+                            <th>Importância</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Vazão e Altura</td>
+                            <td>Atender demanda com margem</td>
+                            <td>Fundamental</td>
+                        </tr>
+                        <tr>
+                            <td>Eficiência</td>
+                            <td>Reduzir custo operacional</td>
+                            <td>Muito alta</td>
+                        </tr>
+                        <tr>
+                            <td>Material</td>
+                            <td>Compatibilidade com fluido</td>
+                            <td>Alta</td>
+                        </tr>
+                        <tr>
+                            <td>Temperatura</td>
+                            <td>Resistir às condições</td>
+                            <td>Alta</td>
+                        </tr>
+                        <tr>
+                            <td>Confiabilidade</td>
+                            <td>Disponibilidade operacional</td>
+                            <td>Alta</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>2. Critérios Econômicos</h4>
+                <p><strong>Custo Total de Propriedade (TCO):</strong></p>
+                <pre>TCO = Custo_inicial + Custo_operacional + Custo_manutenção</pre>
+
+                <p><strong>Análise de 10 anos:</strong></p>
+                <ul>
+                    <li><strong>Custo inicial</strong>: 20-30%</li>
+                    <li><strong>Custo energético</strong>: 60-70%</li>
+                    <li><strong>Manutenção</strong>: 10-20%</li>
+                </ul>
+
+                <blockquote>
+                    <strong>💡 Dica</strong>: Uma bomba 20% mais cara mas 5% mais eficiente pode ser mais econômica!
+                </blockquote>
+
+                <h3>Interpretando Catálogos</h3>
+
+                <h4>Curvas Características</h4>
+                <p><strong>Elementos principais:</strong></p>
+                <ol>
+                    <li><strong>Curva Q×H</strong>: Vazão vs. Altura manométrica</li>
+                    <li><strong>Curva de eficiência</strong>: η vs. Vazão</li>
+                    <li><strong>Curva de potência</strong>: P vs. Vazão</li>
+                </ol>
+
+                <p><strong>Como usar:</strong></p>
+                <ol>
+                    <li>Localizar ponto de operação (Q, H)</li>
+                    <li>Verificar se está na curva</li>
+                    <li>Ler eficiência neste ponto</li>
+                    <li>Ler potência necessária</li>
+                </ol>
+
+                <h4>Exemplo de Seleção <span class="emoji">🎯</span></h4>
+                <p><strong>Necessidade</strong>: Q = 100 m³/h, H = 40 m</p>
+
+                <p><strong>Opções disponíveis:</strong></p>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Q (m³/h)</th>
+                            <th>H (m)</th>
+                            <th>η (%)</th>
+                            <th>Preço (R$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bomba A</td>
+                            <td>100</td>
+                            <td>42</td>
+                            <td>78</td>
+                            <td>15.000</td>
+                        </tr>
+                        <tr>
+                            <td>Bomba B</td>
+                            <td>100</td>
+                            <td>41</td>
+                            <td>82</td>
+                            <td>18.000</td>
+                        </tr>
+                        <tr>
+                            <td>Bomba C</td>
+                            <td>100</td>
+                            <td>45</td>
+                            <td>75</td>
+                            <td>12.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Análise:</strong></p>
+                <ul>
+                    <li><strong>Bomba A</strong>: Boa opção geral</li>
+                    <li><strong>Bomba B</strong>: Mais eficiente, menor custo operacional</li>
+                    <li><strong>Bomba C</strong>: Mais barata, mas menos eficiente</li>
+                </ul>
+
+                <h3>Materiais de Construção</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Aplicação</th>
+                            <th>Vantagens</th>
+                            <th>Desvantagens</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ferro fundido</td>
+                            <td>Água limpa, geral</td>
+                            <td>Baixo custo, resistente</td>
+                            <td>Corrosão em meio ácido</td>
+                        </tr>
+                        <tr>
+                            <td>Aço inox 316</td>
+                            <td>Água potável, química</td>
+                            <td>Resistente à corrosão</td>
+                            <td>Custo elevado</td>
+                        </tr>
+                        <tr>
+                            <td>Bronze</td>
+                            <td>Água salgada</td>
+                            <td>Resistente à corrosão</td>
+                            <td>Custo médio-alto</td>
+                        </tr>
+                        <tr>
+                            <td>Plástico (PP/PVDF)</td>
+                            <td>Químicos agressivos</td>
+                            <td>Inerte quimicamente</td>
+                            <td>Limitação de temperatura</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="back-to-index" onclick="scrollToIndex()">🔝 Voltar ao Índice</button>
+            </section>
+
+            <section class="section" id="exercicios">
+                <h2>📝 EXERCÍCIOS RESOLVIDOS</h2>
+
+                <div class="exercise-container">
+                    <div class="exercise-header">
+                        Exercício 1: Dimensionamento Básico
+                    </div>
+                    <div class="exercise-content">
+                        <p><strong>Problema:</strong></p>
+                        <p>Dimensionar uma bomba para abastecer um reservatório elevado com os seguintes dados:</p>
+                        <ul>
+                            <li>Vazão: 50 m³/h</li>
+                            <li>Desnível geométrico: 20 m</li>
+                            <li>Tubulação: Aço galvanizado, D = 100 mm, L = 150 m</li>
+                            <li>Acessórios: 3 curvas 90° raio longo, 1 válvula gaveta, entrada e saída</li>
+                            <li>Temperatura: 25°C, nível do mar</li>
+                        </ul>
+                        
+                        <button class="solution-toggle" onclick="toggleSolution('sol1')">Ver Resolução</button>
+                        
+                        <div class="solution" id="sol1">
+                            <h4>Solução Detalhada:</h4>
+                            
+                            <p><strong>1. Vazão:</strong></p>
+                            <pre>Q = 50 m³/h = 0,0139 m³/s</pre>
+
+                            <p><strong>2. Velocidade:</strong></p>
+                            <pre>A = π × (0,1)²/4 = 0,00785 m²
+v = 0,0139/0,00785 = 1,77 m/s ✓</pre>
+
+                            <p><strong>3. Perdas distribuídas:</strong></p>
+                            <pre>C = 120 (aço galvanizado)
+hf = (10,674 × (0,0139)^1,852 × 150) / (120^1,852 × (0,1)^4,871)
+hf = (10,674 × 0,0000726 × 150) / (2.985 × 0,00001)
+hf = 0,116 / 0,02985 = 3,89 m</pre>
+
+                            <p><strong>4. Perdas localizadas (Comprimentos Equivalentes):</strong></p>
+                            <pre>3 curvas 90°: 3 × 20 × 0,1 = 6,0 m
+1 válvula gaveta: 1 × 8 × 0,1 = 0,8 m
+Entrada + saída: (30 + 60) × 0,1 = 9,0 m
+Leq_total = 6,0 + 0,8 + 9,0 = 15,8 m
+
+hf_local = (10,674 × (0,0139)^1,852 × 15,8) / (120^1,852 × (0,1)^4,871)
+hf_local = 0,0122 / 0,02985 = 0,41 m</pre>
+
+                            <p><strong>5. AMT:</strong></p>
+                            <pre>AMT = 20 + 3,89 + 0,41 = 24,3 m</pre>
+
+                            <p><strong>6. Potência:</strong></p>
+                            <pre>P = (1000 × 0,0139 × 24,3)/(1000 × 0,75) = 0,45 kW</pre>
+
+                            <p><strong>Resposta</strong>: Bomba de <strong>0,75 kW</strong> (margem de segurança)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-container">
+                    <div class="exercise-header">
+                        Exercício 2: Análise Econômica
+                    </div>
+                    <div class="exercise-content">
+                        <p><strong>Problema:</strong></p>
+                        <p>Comparar duas bombas para operação 6000h/ano:</p>
+                        <ul>
+                            <li><strong>Bomba A</strong>: R$ 20.000, η = 75%</li>
+                            <li><strong>Bomba B</strong>: R$ 28.000, η = 85%</li>
+                        </ul>
+                        <p>Potência hidráulica necessária: 15 kW<br>
+                        Custo energia: R$ 0,50/kWh</p>
+                        
+                        <button class="solution-toggle" onclick="toggleSolution('sol2')">Ver Resolução</button>
+                        
+                        <div class="solution" id="sol2">
+                            <h4>Solução Detalhada:</h4>
+                            
+                            <p><strong>1. Potência consumida:</strong></p>
+                            <pre>Bomba A: P = 15/0,75 = 20 kW
+Bomba B: P = 15/0,85 = 17,6 kW</pre>
+
+                            <p><strong>2. Custo energético anual:</strong></p>
+                            <pre>Bomba A: 20 × 6000 × 0,50 = R$ 60.000/ano
+Bomba B: 17,6 × 6000 × 0,50 = R$ 52.800/ano
+Economia = R$ 7.200/ano</pre>
+
+                            <p><strong>3. Payback:</strong></p>
+                            <pre>Diferença inicial = R$ 28.000 - R$ 20.000 = R$ 8.000
+Payback = R$ 8.000 / R$ 7.200 = 1,1 anos</pre>
+
+                            <p><strong>Resposta</strong>: <strong>Bomba B</strong> é mais econômica (payback < 2 anos)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-container">
+                    <div class="exercise-header">
+                        Exercício 3: Sistema Complexo
+                    </div>
+                    <div class="exercise-content">
+                        <p><strong>Problema:</strong></p>
+                        <p>Dimensionar bomba para sistema industrial:</p>
+                        <ul>
+                            <li>Vazão: 120 m³/h</li>
+                            <li>Altura geométrica: 35 m</li>
+                            <li>Tubulação: Ferro fundido, D = 200 mm, L = 300 m</li>
+                            <li>Acessórios: 6 curvas 90°, 3 válvulas gaveta, 2 válvulas de retenção, entrada e saída</li>
+                        </ul>
+                        
+                        <button class="solution-toggle" onclick="toggleSolution('sol3')">Ver Resolução</button>
+                        
+                        <div class="solution" id="sol3">
+                            <h4>Solução Detalhada:</h4>
+                            
+                            <p><strong>1. Vazão:</strong></p>
+                            <pre>Q = 120 m³/h = 0,0333 m³/s</pre>
+
+                            <p><strong>2. Velocidade:</strong></p>
+                            <pre>A = π × (0,2)²/4 = 0,0314 m²
+v = 0,0333/0,0314 = 1,06 m/s ✓</pre>
+
+                            <p><strong>3. Perdas distribuídas:</strong></p>
+                            <pre>C = 100 (ferro fundido)
+hf = (10,674 × (0,0333)^1,852 × 300) / (100^1,852 × (0,2)^4,871)
+hf = (10,674 × 0,000354 × 300) / (1.000 × 0,000512)
+hf = 1,133 / 0,512 = 2,21 m</pre>
+
+                            <p><strong>4. Perdas localizadas:</strong></p>
+                            <pre>6 curvas 90°: 6 × 20 × 0,2 = 24,0 m
+3 válvulas gaveta: 3 × 8 × 0,2 = 4,8 m
+2 válvulas retenção: 2 × 100 × 0,2 = 40,0 m
+Entrada + saída: (30 + 60) × 0,2 = 18,0 m
+Leq_total = 24,0 + 4,8 + 40,0 + 18,0 = 86,8 m
+
+hf_local = (10,674 × (0,0333)^1,852 × 86,8) / (100^1,852 × (0,2)^4,871)
+hf_local = 0,328 / 0,512 = 0,64 m</pre>
+
+                            <p><strong>5. AMT:</strong></p>
+                            <pre>AMT = 35 + 2,21 + 0,64 = 37,85 m ≈ 38 m</pre>
+
+                            <p><strong>6. Potência:</strong></p>
+                            <pre>P = (1000 × 0,0333 × 38)/(1000 × 0,80) = 1,58 kW</pre>
+
+                            <p><strong>Resposta</strong>: Bomba de <strong>2,2 kW</strong> (margem de segurança)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="back-to-index" onclick="scrollToIndex()">🔝 Voltar ao Índice</button>
+            </section>
+
+            <section class="section" id="questoes-enade">
+                <h2>🎓 QUESTÕES ENADE</h2>
+
+                <div class="exercise-container">
+                    <div class="exercise-header">
+                        QUESTÃO 1 - Domínio Cognitivo: Lembrar | Tipo: Complementação Simples | Nível: Fácil
+                    </div>
+                    <div class="exercise-content">
+                        <p>As bombas hidráulicas são classificadas em diferentes tipos conforme seu princípio de funcionamento. As bombas dinâmicas transferem energia ao fluido através de forças dinâmicas, enquanto as volumétricas movimentam volumes fixos por ciclo.</p>
+                        
+                        <p><strong>As bombas centrífugas, que são um tipo de bomba dinâmica, funcionam através do princípio da</strong></p>
+                        
+                        <p>a) movimentação de volumes fixos de fluido por meio de pistões alternativos.<br>
+                        b) força centrífuga gerada pelo rotor que "atira" o fluido para fora.<br>
+                        c) compressão direta do fluido através de engrenagens rotativas.<br>
+                        d) sucção alternada criada por membranas flexíveis.</p>
+                        
+                        <button class="solution-toggle" onclick="toggleSolution('enade1')">Ver Resolução</button>
+                        
+                        <div class="solution" id="enade1">
+                            <p><strong>Resposta: B</strong></p>
+                            <p>A alternativa B está correta pois as bombas centrífugas funcionam pelo princípio da força centrífuga, onde o rotor em rotação transfere energia cinética ao fluido, "atirando-o" radialmente para fora através das pás do impelidor. A alternativa A descreve bombas volumétricas alternativas de pistão, não centrífugas. A alternativa C refere-se a bombas volumétricas rotativas de engrenagem. A alternativa D descreve bombas de diafragma, que também são volumétricas alternativas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-container">
+                    <div class="exercise-header">
+                        QUESTÃO 2 - Domínio Cognitivo: Aplicar | Tipo: Resposta Única | Nível: Intermediário
+                    </div>
+                    <div class="exercise-content">
+                        <p>Um sistema de bombeamento possui uma tubulação de PVC com diâmetro de 100mm e apresenta as seguintes singularidades: 2 curvas de 90° raio longo, 1 válvula gaveta totalmente aberta e entrada/saída normais. A vazão é de 30 m³/h.</p>
+                        
+                        <p><strong>Qual o comprimento equivalente total das perdas localizadas neste sistema?</strong></p>
+                        
+                        <p>a) 8,5 m<br>
+                        b) 10,6 m<br>
+                        c) 12,4 m<br>
+                        d) 13,8 m</p>
+                        
+                        <button class="solution-toggle" onclick="toggleSolution('enade2')">Ver Resolução</button>
+                        
+                        <div class="solution" id="enade2">
+                            <p><strong>Resposta: D</strong></p>
+                            <p><strong>Cálculo:</strong></p>
+                            <pre>D = 100mm = 0,1m
+
+2 curvas 90°: 2 × 20 × 0,1 = 4,0 m
+1 válvula gaveta: 1 × 8 × 0,1 = 0,8 m
+Entrada: 1 × 30 × 0,1 = 3,0 m
+Saída: 1 × 60 × 0,1 = 6,0 m
+
+Total: 4,0 + 0,8 + 3,0 + 6,0 = 13,8 m</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise-container">
+                    <div class="exercise-header">
+                        QUESTÃO 3 - Domínio Cognitivo: Analisar | Tipo: Resposta Única | Nível: Intermediário
+                    </div>
+                    <div class="exercise-content">
+                        <p>Uma indústria precisa bombear água através de uma tubulação de ferro fundido (C=100) com 200mm de diâmetro e 500m de comprimento. O sistema apresenta vazão de 150 m³/h e possui 6 curvas de 90°, 2 válvulas de retenção e 3 válvulas gaveta.</p>
+                        
+                        <p><strong>Analisando as perdas de carga deste sistema, qual componente representa maior impacto?</strong></p>
+                        
+                        <p>a) Perdas distribuídas na tubulação principal.<br>
+                        b) Perdas nas curvas de 90°.<br>
+                        c) Perdas nas válvulas de retenção.<br>
+                        d) Perdas nas válvulas gaveta.</p>
+                        
+                        <button class="solution-toggle" onclick="toggleSolution('enade3')">Ver Resolução</button>
+                        
+                        <div class="solution" id="enade3">
+                            <p><strong>Resposta: C</strong></p>
+                            <p><strong>Análise dos comprimentos equivalentes:</strong></p>
+                            <pre>D = 200mm = 0,2m
+
+Curvas 90°: 6 × 20 × 0,2 = 24,0 m
+Válvulas retenção: 2 × 100 × 0,2 = 40,0 m
+Válvulas gaveta: 3 × 8 × 0,2 = 4,8 m</pre>
+                            <p>As válvulas de retenção têm o maior comprimento equivalente (40m), sendo os componentes mais restritivos individualmente, apesar das perdas distribuídas serem maiores em valor absoluto.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="back-to-index" onclick="scrollToIndex()">🔝 Voltar ao Índice</button>
+            </section>
+
+            <section class="section" id="conclusao">
+                <h2>🎯 CONCLUSÃO</h2>
+
+                <h3>Pontos-Chave Aprendidos <span class="emoji">✅</span></h3>
+                <ol>
+                    <li><strong>Fundamentos são essenciais</strong>: Entender física por trás dos cálculos</li>
+                    <li><strong>Perdas de carga são críticas</strong>: Método dos comprimentos equivalentes simplifica cálculos</li>
+                    <li><strong>Eficiência importa</strong>: Impacto econômico significativo</li>
+                    <li><strong>Seleção é multifatorial</strong>: Não apenas vazão e altura</li>
+                    <li><strong>Manutenção é fundamental</strong>: Preserva eficiência e vida útil</li>
+                </ol>
+
+                <h3>Próximos Passos <span class="emoji">🚀</span></h3>
+
+                <h4>Para Aprofundar:</h4>
+                <ul>
+                    <li><strong>Controle de bombas</strong>: Variadores de frequência, válvulas</li>
+                    <li><strong>Sistemas em paralelo/série</strong>: Múltiplas bombas</li>
+                    <li><strong>Bombas especiais</strong>: Submersas, auto-escorvantes, multiestágios</li>
+                    <li><strong>Análise de vibração</strong>: Diagnóstico de problemas</li>
+                    <li><strong>Eficiência energética</strong>: Programas de otimização</li>
+                </ul>
+
+                <h4>Ferramentas Úteis:</h4>
+                <ul>
+                    <li><strong>Software</strong>: EPANET, Pipe Flow Expert</li>
+                    <li><strong>Catálogos</strong>: KSB, Grundfos, Weg, Schneider</li>
+                    <li><strong>Normas</strong>: ABNT NBR 12214, ISO 9906</li>
+                </ul>
+
+                <h4>Dicas para a Carreira:</h4>
+                <ol>
+                    <li><strong>Visite instalações</strong>: Veja bombas funcionando na prática</li>
+                    <li><strong>Faça cursos</strong>: Fabricantes oferecem treinamentos</li>
+                    <li><strong>Acompanhe tecnologia</strong>: Bombas inteligentes, IoT</li>
+                    <li><strong>Desenvolva senso crítico</strong>: Questione especificações</li>
+                    <li><strong>Pense sustentável</strong>: Eficiência energética é o futuro</li>
+                </ol>
+
+                <h3>Mensagem Final <span class="emoji">💪</span></h3>
+                <p>O dimensionamento de bombas combina <strong>teoria sólida</strong> com <strong>experiência prática</strong>. Como futuro engenheiro, você será responsável por sistemas que:</p>
+
+                <ul>
+                    <li><strong>Abastecem cidades</strong> <span class="emoji">🏙️</span></li>
+                    <li><strong>Movimentam processos industriais</strong> <span class="emoji">🏭</span></li>
+                    <li><strong>Irrigam plantações</strong> <span class="emoji">🌾</span></li>
+                    <li><strong>Salvam vidas</strong> (bombeiros, hospitais) <span class="emoji">🚑</span></li>
+                </ul>
+
+                <p>Cada cálculo que você faz, cada bomba que você especifica, tem impacto real na sociedade e no meio ambiente.</p>
+
+                <p><strong>Continue estudando, questionando e aplicando!</strong></p>
+
+                <p>O mundo precisa de engenheiros competentes e conscientes. Você está no caminho certo! <span class="emoji">🎯</span></p>
+
+                <button class="back-to-index" onclick="scrollToIndex()">🔝 Voltar ao Índice</button>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p><strong>© 2024 - Guia de Dimensionamento de Bombas Hidráulicas</strong></p>
+            <p><em>Material educacional para estudantes de engenharia</em></p>
+            <br>
+            <p><em>"A engenharia é a arte de aplicar conhecimentos científicos e práticos ao projeto, construção e manutenção de estruturas, máquinas, aparelhos, sistemas ou processos."</em></p>
+            <br>
+            <p><strong>Boa sorte em seus estudos!</strong> <span class="emoji">📚⚡</span></p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleIndex() {
+            const index = document.getElementById('index');
+            index.classList.toggle('show');
+        }
+
+        function scrollToIndex() {
+            document.querySelector('.nav-container').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+            const index = document.getElementById('index');
+            if (!index.classList.contains('show')) {
+                index.classList.add('show');
+            }
+        }
+
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            solution.classList.toggle('show');
+        }
+
+        // Smooth scrolling for index links
+        document.querySelectorAll('.index-item a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Water animation
+        function createWaterDrop() {
+            const waterAnimation = document.getElementById('waterAnimation');
+            const drop = document.createElement('div');
+            drop.className = 'water-drop';
+            drop.style.left = Math.random() * 100 + '%';
+            drop.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            drop.style.animationDelay = Math.random() * 2 + 's';
+            waterAnimation.appendChild(drop);
+
+            setTimeout(() => {
+                drop.remove();
+            }, 5000);
+        }
+
+        // Create water drops periodically
+        setInterval(createWaterDrop, 800);
+
+        // Add some initial drops
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createWaterDrop, i * 200);
+        }
+    </script>
+</body>
+</html>
