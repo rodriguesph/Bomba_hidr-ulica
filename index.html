@@ -1221,23 +1221,24 @@ v = 0,0139/0,00785 = 1,77 m/s ✓</pre>
                             <p><strong>3. Perdas distribuídas:</strong></p>
                             <pre>C = 120 (aço galvanizado)
 hf = (10,674 × (0,0139)^1,852 × 150) / (120^1,852 × (0,1)^4,871)
-hf = (10,674 × 0.0003638 × 150) / (2.985 × 0,00001)
-hf = 0,5826. / 0,0954 = 6,1 m</pre>
+hf = 6,023 m</pre>
 
                             <p><strong>4. Perdas localizadas (Comprimentos Equivalentes):</strong></p>
-                            <pre>3 curvas 90°: 3 × 20 × 0,1 = 6,0 m
-1 válvula gaveta: 1 × 8 × 0,1 = 0,8 m
-Entrada + saída: (30 + 60) × 0,1 = 9,0 m
-Leq_total = 6,0 + 0,8 + 9,0 = 15,8 m
+                            <pre>3 curvas 90°: 3*3,2 = 9,6 m
+1 válvula gaveta:  1 m
+Entrada: 2 m
+Saída: 2,5 m
+Leq_total = 9,6 + 1 + 2 + 2,5 = 15,1 m
 
-hf_local = (10,674 × (0,0139)^1,852 × 15,8) / (120^1,852 × (0,1)^4,871)
-hf_local = 0,0122 / 0,02985 = 0,41 m</pre>
+hf_local = (10,674 × (0,0139)^1,852 × 15,1) / (120^1,852 × (0,1)^4,871)
+hf_local = 0,606 m</pre>
 
                             <p><strong>5. AMT:</strong></p>
-                            <pre>AMT = 20 + 3,89 + 0,41 = 24,3 m</pre>
+                            <pre>AMT = 20 + 6,023 + 0,606 = 26,63 m</pre>
 
                             <p><strong>6. Potência:</strong></p>
-                            <pre>P = (1000 × 0,0139 × 24,3)/(1000 × 0,75) = 0,45 kW</pre>
+                            <pre>P = (1000x10 × 0,0139 × 26,63)/(1000 × 0,75) = 4,899 kW</pre>
+                            <pre>P = 6,66 CV</pre>
 
                             <p><strong>Resposta</strong>: Bomba de <strong>0,75 kW</strong> (margem de segurança)</p>
                         </div>
@@ -1310,26 +1311,27 @@ v = 0,0333/0,0314 = 1,06 m/s ✓</pre>
                             <p><strong>3. Perdas distribuídas:</strong></p>
                             <pre>C = 100 (ferro fundido)
 hf = (10,674 × (0,0333)^1,852 × 300) / (100^1,852 × (0,2)^4,871)
-hf = (10,674 × 0,000354 × 300) / (1.000 × 0,000512)
-hf = 1,133 / 0,512 = 2,21 m</pre>
+hf = = 2,954 m</pre>
 
                             <p><strong>4. Perdas localizadas:</strong></p>
-                            <pre>6 curvas 90°: 6 × 20 × 0,2 = 24,0 m
+                            <pre>6 curvas 90°: 6 x 30 x 0,2 = 36,0 m
 3 válvulas gaveta: 3 × 8 × 0,2 = 4,8 m
 2 válvulas retenção: 2 × 100 × 0,2 = 40,0 m
-Entrada + saída: (30 + 60) × 0,2 = 18,0 m
-Leq_total = 24,0 + 4,8 + 40,0 + 18,0 = 86,8 m
+Entrada 1 x 17 x 0,2 = 3,4 m
+saída: 1 x 35 × 0,2 = 7,0 m
+Leq_total = 91,2 m
 
-hf_local = (10,674 × (0,0333)^1,852 × 86,8) / (100^1,852 × (0,2)^4,871)
-hf_local = 0,328 / 0,512 = 0,64 m</pre>
+hf_local = (10,674 × (0,0333)^1,852 × 91,2) / (100^1,852 × (0,2)^4,871)
+hf_local =  0,898 m</pre>
 
                             <p><strong>5. AMT:</strong></p>
-                            <pre>AMT = 35 + 2,21 + 0,64 = 37,85 m ≈ 38 m</pre>
+                            <pre>AMT = 35 + 2,954 + 0,898 = 38,85 m </pre>
 
                             <p><strong>6. Potência:</strong></p>
-                            <pre>P = (1000 × 0,0333 × 38)/(1000 × 0,80) = 1,58 kW</pre>
+                            <pre>P = (1000 x 10 × 0,0333 × 38,85)/(1000 × 0,80) = 16,18 kW</pre>
+                            <pre>P = 22,01 CV</pre>
 
-                            <p><strong>Resposta</strong>: Bomba de <strong>2,2 kW</strong> (margem de segurança)</p>
+                            <p><strong>Resposta</strong>: Bomba de <strong>23 kW</strong> (margem de segurança)</p>
                         </div>
                     </div>
                 </div>
@@ -1557,3 +1559,4 @@ Válvulas gaveta: 3 × 8 × 0,2 = 4,8 m</pre>
 </body>
 
 </html>
+
